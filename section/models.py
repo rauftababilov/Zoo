@@ -15,7 +15,13 @@ class AbstractAnimalModel(models.Model):
         max_length=40,
         verbose_name='Название животного'
     )
-    
+
+    animal_name = models.CharField(
+        max_length=40,
+        verbose_name='Имя',
+        null=True
+    )
+
     date_birthday = models.DateField(
         auto_created=True,
         verbose_name='Дата рождения'
@@ -27,6 +33,7 @@ class AbstractAnimalModel(models.Model):
 
 class AbstractAccountingModel(models.Model):
     """Абстрактный класс учета"""
+
 
     growth = models.DecimalField(
         max_digits=20,
@@ -70,7 +77,7 @@ class ShaggyAccounting(AbstractAccountingModel):
     animal = models.ForeignKey(ShaggyAnimal, on_delete=models.CASCADE, verbose_name='Животное')
 
     def __str__(self):
-        return f"{self.animal} | {self.growth}см. | {self.weight}кг."
+        return f"{self.animal.animal_name} | {self.animal} | {self.growth}см. | {self.weight}кг."
 
     class Meta:
         verbose_name = 'Учет мохнатых'
@@ -93,7 +100,7 @@ class WaterfowlAccounting(AbstractAccountingModel):
     animal = models.ForeignKey(WaterfowlAnimal, on_delete=models.CASCADE, verbose_name='Животное')
 
     def __str__(self):
-        return f"{self.animal} | {self.growth}см. | {self.weight}кг."
+        return f"{self.animal.animal_name} | {self.animal} | {self.growth}см. | {self.weight}кг."
 
     class Meta:
         verbose_name = 'Учет водоплавающих'
@@ -116,7 +123,7 @@ class FlyingAccounting(AbstractAccountingModel):
     animal = models.ForeignKey(FlyingAnimal, on_delete=models.CASCADE, verbose_name='Животное')
 
     def __str__(self):
-        return f"{self.animal} | {self.growth}см. | {self.weight}кг."
+        return f"{self.animal.animal_name} | {self.animal} | {self.growth}см. | {self.weight}кг."
 
     class Meta:
         verbose_name = 'Учет летающих'
@@ -141,7 +148,7 @@ class CreepingAccounting(AbstractAccountingModel):
     animal = models.ForeignKey(CreepingAnimal, on_delete=models.CASCADE, verbose_name='Животное')
 
     def __str__(self):
-        return f"{self.animal} | {self.growth}см. | {self.weight}кг."
+        return f"{self.animal.animal_name} | {self.animal} | {self.growth}см. | {self.weight}кг."
 
     class Meta:
         verbose_name = 'Учет ползучих'

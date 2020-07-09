@@ -13,40 +13,54 @@ from .models import (
 
 @admin.register(CreepingAnimal)
 class CreepingAnimalAdmin(admin.ModelAdmin):
-    list_display = ('name', 'patronymic', 'date_birthday')
+    list_display = ('animal_name', 'name', 'patronymic', 'date_birthday')
 
 
 @admin.register(CreepingAccounting)
 class CreepingAccountingAdmin(admin.ModelAdmin):
-    list_display = ('animal', 'growth', 'weight', 'date_created')
+    @staticmethod
+    def get_animal_name(obj):
+        return obj.animal.animal_name
+
+    list_display = ('get_animal_name', 'animal', 'growth', 'weight', 'date_created')
 
 
 @admin.register(FlyingAnimal)
 class FlyingAnimalAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date_birthday')
+    list_display = ('animal_name', 'name', 'date_birthday')
 
 
 @admin.register(FlyingAccounting)
 class FlyingAccountingAdmin(admin.ModelAdmin):
-    list_display = ('animal', 'growth', 'weight', 'date_created')
+    @staticmethod
+    def get_animal_name(obj):
+        return obj.animal.animal_name
+
+    list_display = ('get_animal_name', 'animal', 'growth', 'weight', 'date_created')
 
 
 @admin.register(ShaggyAnimal)
 class ShaggyAnimalAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date_birthday', 'count_teeth')
+    list_display = ('animal_name', 'name', 'date_birthday', 'count_teeth')
 
 
 @admin.register(ShaggyAccounting)
 class ShaggyAccountingAdmin(admin.ModelAdmin):
-    list_display = ('animal', 'growth', 'weight', 'date_created')
+    @staticmethod
+    def get_animal_name(obj):
+        return obj.animal.animal_name
+    list_display = ('get_animal_name', 'animal', 'growth', 'weight', 'date_created')
 
 
 @admin.register(WaterfowlAnimal)
 class WaterfowlAnimalAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date_birthday',)
+    list_display = ('animal_name', 'name', 'date_birthday',)
 
 
 @admin.register(WaterfowlAccounting)
 class WaterfowlAccountingAdmin(admin.ModelAdmin):
-    list_display = ('animal', 'growth', 'weight', 'date_created')
+    @staticmethod
+    def get_animal_name(obj):
+        return obj.animal.animal_name
+    list_display = ('get_animal_name', 'animal', 'growth', 'weight', 'date_created')
 
